@@ -81,3 +81,4 @@ If you are new to fabric or Minecraft modding in general then [this wiki page](h
 This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
 This project incorporates:
 * A precompiled version of [Tiny Remapper](https://github.com/FabricMC/tiny-remapper) (LGPL-3.0)
+* The version of [Atum](https://github.com/tildejustin/atum/tree/1.6.4) it is based on (MIT)
