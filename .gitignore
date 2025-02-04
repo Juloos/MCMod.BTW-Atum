@@ -25,3 +25,7 @@ run/
 
 # macos
 *.DS_Store
+
+# BTW dev
+/build_BTW/BTW_dev/
+/custom_mappings/
