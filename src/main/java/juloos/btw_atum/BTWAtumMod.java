@@ -105,7 +105,7 @@ public class BTWAtumMod implements ModInitializer {
 			if (difficulty > 4 || difficulty < 0)
 				difficulty = 4;
 			if (FabricLoader.getInstance().isModLoaded("nightmare_mode"))
-				difficulty = (difficulty % 2) * 2;
+				difficulty = ((difficulty / 2) % 2) * 2;
 			try {
 				generatorType = !properties.containsKey("generatorType") ? 0 : Integer.parseInt(properties.getProperty("generatorType"));
 			} catch (NumberFormatException e) {
