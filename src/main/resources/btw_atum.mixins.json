@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "juloos.btw_atum.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "EntityPlayerMixin",
+    "IntegratedServerMixin",
+    "LoadingScreenRendererMixin",
+    "ServerConfigurationManagerMixin",
+    "hotkey.GameSettingsMixin"
+  ],
+  "client": [
+    "GuiCreateWorldMixin",
+    "GuiIngameMixin",
+    "GuiMainMenuMixin",
+    "GuiOptionsMixin",
+    "hotkey.GuiControlsMixin",
+    "hotkey.MinecraftMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "btw_atum",
+  "version": "${version}",
+  "name": "BTW Atum",
+  "description": "Fast reset mod, a recreation of Atum for Better Than Wolves.",
+  "authors": [
+    "Void_X-Walker",
+    "tildejustin",
+    "Juloos"
+  ],
+  "license": "MIT",
+  "icon": "assets/btw_atum/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "juloos.btw_atum.BTWAtumMod"
+    ],
+    "btw:addon": [
+    ]
+  },
+  "custom": {
+    "btw:addon_prefix": "Atum"
+  },
+  "mixins": [
+    "btw_atum.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.19",
+    "minecraft": "1.6.4"
+  }
+}
