@@ -10,13 +10,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
 public abstract class GuiMainMenuMixin extends GuiScreen {
+    @Inject(method = "initGui", at = @At("HEAD"), cancellable = true)
+    private void initGui(CallbackInfo ci) {
+        if (BTWAtumMod.running && !BTWAtumMod.loading) {
+            this.mc.displayGuiScreen(new GuiCreateWorld(this));
+            ci.cancel();
+        }
+    }
     @SuppressWarnings("unchecked")
     @Inject(method = "initGui", at = @At("TAIL"))
-    private void initGui(CallbackInfo ci) {
-        if (BTWAtumMod.running && !BTWAtumMod.loading)
-            this.mc.displayGuiScreen(new GuiCreateWorld(this));
-        else
-            this.buttonList.add(new GuiButton(69, this.width / 2 - 124, this.height / 4 + 48, 20, 20, ""));
+    private void initGuiAddButton(CallbackInfo ci) {
+        this.buttonList.add(new GuiButton(69, this.width / 2 - 124, this.height / 4 + 48, 20, 20, ""));
     }
 
     @Inject(method = "drawScreen", at = @At("TAIL"))
