@@ -1,9 +1,10 @@
 package juloos.btw_atum;
 
+import btw.world.util.difficulty.Difficulties;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.src.KeyBinding;
-import net.minecraft.src.Minecraft;
+import net.minecraft.src.WorldType;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Keyboard;
 
@@ -15,7 +16,7 @@ public class BTWAtumMod implements ModInitializer {
 	public static boolean running = false;
 	public static Logger LOGGER = Logger.getLogger("atum");
 	public static String seed = "";
-	public static int difficulty = 4;
+	public static int difficulty = 2;
 	public static int generatorType = 0;
 	public static int rsgAttempts;
 	public static int ssgAttempts;
@@ -98,20 +99,20 @@ public class BTWAtumMod implements ModInitializer {
 				seed = "";
 			seed = seed.trim();
 			try {
-				difficulty = !properties.containsKey("difficulty") ? 4 : Integer.parseInt(properties.getProperty("difficulty"));
+				difficulty = !properties.containsKey("difficulty") ? 2 : Integer.parseInt(properties.getProperty("difficulty"));
 			} catch (NumberFormatException e) {
-				difficulty = 4;
+				difficulty = 2;
 			}
-			if (difficulty > 4 || difficulty < 0)
-				difficulty = 4;
+			if (difficulty >= Difficulties.DIFFICULTY_LIST.size() || difficulty < 0)
+				difficulty = 2;
 			if (FabricLoader.getInstance().isModLoaded("nightmare_mode"))
-				difficulty = ((difficulty / 2) % 2) * 2;
+				difficulty = ((difficulty / 2) % 2) * 2;  // Only 2 modes: 0 and 2
 			try {
 				generatorType = !properties.containsKey("generatorType") ? 0 : Integer.parseInt(properties.getProperty("generatorType"));
 			} catch (NumberFormatException e) {
 				generatorType = 0;
 			}
-			if (generatorType > 6)
+			if (generatorType >= WorldType.worldTypes.length || generatorType < 0)
 				generatorType = 0;
 			try {
 				rsgAttempts = !properties.containsKey("rsgAttempts") ? 0 : Integer.parseInt(properties.getProperty("rsgAttempts"));
@@ -124,7 +125,7 @@ public class BTWAtumMod implements ModInitializer {
 				ssgAttempts = 0;
 			}
 			structures = !properties.containsKey("structures") || Boolean.parseBoolean(properties.getProperty("structures"));
-			bonusChest = Boolean.parseBoolean(properties.getProperty("bonusChest"));
+			bonusChest = properties.containsKey("structures") && Boolean.parseBoolean(properties.getProperty("bonusChest"));
 		}
 	}
 
