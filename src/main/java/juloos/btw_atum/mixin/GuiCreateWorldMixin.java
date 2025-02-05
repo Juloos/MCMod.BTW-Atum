@@ -3,6 +3,7 @@ package juloos.btw_atum.mixin;
 import btw.world.util.difficulty.Difficulties;
 import juloos.btw_atum.BTWAtumMod;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
 import org.apache.commons.lang3.StringUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,6 +39,9 @@ public abstract class GuiCreateWorldMixin extends GuiScreen {
             isHardcore = BTWAtumMod.difficulty == 4;
             if (FabricLoader.getInstance().isModLoaded("nightmare_mode"))
                 this.lockDifficulty = true;
+            long start = System.currentTimeMillis();
+            while (MinecraftServer.getServer() != null && !MinecraftServer.getServer().isServerStopped() && System.currentTimeMillis() - start < 10000)  // 10s max
+                Thread.yield();
             this.createLevel();
         }
     }

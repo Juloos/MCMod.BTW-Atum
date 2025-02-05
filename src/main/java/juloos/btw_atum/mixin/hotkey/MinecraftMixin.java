@@ -61,7 +61,6 @@ public abstract class MinecraftMixin {
         if (this.theWorld != null) {
             this.theWorld.sendQuittingDisconnectingPacket();
             this.loadWorld(null);
-            Thread.yield();
         }
         this.displayGuiScreen(null);
     }
